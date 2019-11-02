@@ -39,7 +39,7 @@ int main(int argc, char* argv[])
 	//Initializing Mutex Lock and Semaphores
   sem_init(&arr, 0, 1); //Contains 3 semaphores
   sem_init(&s4, 0, 1);
-  pthread_mutex_init(&mutexLock1, NULL);
+  pthread_mutex_init(&mutexLock, NULL);
 
 
 	if(argc<2)
