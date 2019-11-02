@@ -4,7 +4,7 @@
 #include <time.h>			//Wait for a random time.
 #include <unistd.h>			//Thread calls sleep for specified number of seconds.
 #include <semaphore.h>		//To create semaphores
-#include <stdlib.h>			
+#include <stdlib.h>
 #include <stdio.h>			//Input Output
 
 pthread_t *Students;		//N threads running as Students.
@@ -13,23 +13,18 @@ pthread_t TA;				//Separate Thread for TA.
 int ChairsCount = 0;
 int CurrentIndex = 0;
 
-/*TODO
- 
 //Declaration of Semaphores and Mutex Lock.
+
 //Semaphores used:
-//A semaphore to signal and wait TA's sleep.
-//An array of 3 semaphores to signal and wait chair to wait for the TA.
-//A semaphore to signal and wait for TA's next student.
- 
- //Mutex Lock used:
+sem_t s1; //A semaphore to signal and wait TA's sleep.
+sem_t s2;
+sem_t s3;
+sem_t arr[s1, s2, s3]; //An array of 3 semaphores to signal and wait chair to wait for the TA.
+sem_t s4; //A semaphore to signal and wait for TA's next student.
+
+//Mutex Lock used:
 //To lock and unlock variable ChairsCount to increment and decrement its value.
- 
- //hint: use sem_t and pthread_mutex_t
- 
- 
- */
-
-
+pthread_mutex_t mutexLock;
 
 //Declared Functions
 void *TA_Activity();
@@ -41,13 +36,11 @@ int main(int argc, char* argv[])
 	int id;
 	srand(time(NULL));
 
-    /*TODO
-	//Initializing Mutex Lock and Semaphores.
-	
-     //hint: use sem_init() and pthread_mutex_init()
-     
-     */
-	
+	//Initializing Mutex Lock and Semaphores
+  sem_init(&arr, 0, 1); //Contains 3 semaphores
+  pthread_mutex_init(&mutexLock1, NULL);
+
+
 	if(argc<2)
 	{
 		printf("Number of Students not specified. Using default (5) students.\n");
@@ -58,21 +51,19 @@ int main(int argc, char* argv[])
 		printf("Number of Students specified. Creating %d threads.\n", number_of_students);
 		number_of_students = atoi(argv[1]);
 	}
-		
+
 	//Allocate memory for Students
 	Students = (pthread_t*) malloc(sizeof(pthread_t)*number_of_students);
 
-    /*TODO
 	//Creating one TA thread and N Student threads.
      //hint: use pthread_create
-
+  pthread_create(&Students, NULL, &Student_Activity, NULL);
+  pthread_create(&TA, NULL, &TA_Activity, NULL);
 	//Waiting for TA thread and N Student threads.
-     //hint: use pthread_join
-     
-     */
-
+  pthread_join(&Students, NULL);
+  pthread_join(&TA, NULL);
 	//Free allocated memory
-	free(Students); 
+	free(Students);
 	return 0;
 }
 
@@ -82,7 +73,7 @@ void *TA_Activity()
 	//TA is currently sleeping.
 
     // lock
-    
+
     //if chairs are empty, break the loop.
 
 	//TA gets next student on chair.
@@ -90,31 +81,31 @@ void *TA_Activity()
     //unlock
 
 	//TA is currently helping the student
-     
+
      //hint: use sem_wait(); sem_post(); pthread_mutex_lock(); pthread_mutex_unlock()
 
 */
 }
 
-void *Student_Activity(void *threadID) 
+void *Student_Activity(void *threadID)
 {
     /*TODO
-     
+
 	//Student  needs help from the TA
 	//Student tried to sit on a chair.
 	//wake up the TA.
     // lock
-     
+
 	// unlock
     //Student leaves his/her chair.
 	//Student  is getting help from the TA
 	//Student waits to go next.
 	//Student left TA room
-    
+
     //If student didn't find any chair to sit on.
     //Student will return at another time
-     
+
      //hint: use sem_wait(); sem_post(); pthread_mutex_lock(); pthread_mutex_unlock()
-			
+
 	*/
 }
