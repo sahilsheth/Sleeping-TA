@@ -71,7 +71,7 @@ int main(int argc, char* argv[])
 
 void *TA_Activity()
 {
-     TODO
+     //TODO
 	//TA is currently sleeping.
         sem_wait(&sleepyTA);
 	printf("TA is currently sleeping. ");
@@ -94,6 +94,8 @@ void *TA_Activity()
     //unlock
 
 	//TA is currently helping the student
+	printf("TA is currently helping the student");
+	sem_post(&s4);
 
      //hint: use sem_wait(); sem_post(); pthread_mutex_lock(); pthread_mutex_unlock()
 }
