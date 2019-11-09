@@ -21,6 +21,7 @@ sem_t s2;
 sem_t s3;
 sem_t arr[s1, s2, s3]; //An array of 3 semaphores to signal and wait chair to wait for the TA.
 sem_t s4; //A semaphore to signal and wait for TA's next student.
+sem_t sleepyTA;
 
 //Mutex Lock used:
 //To lock and unlock variable ChairsCount to increment and decrement its value.
@@ -70,27 +71,35 @@ int main(int argc, char* argv[])
 
 void *TA_Activity()
 {
-    /* TODO
+     TODO
 	//TA is currently sleeping.
-
+        sem_wait(&sleepyTA);
+	printf("TA is currently sleeping. ");
+	while(true){
     // lock
-
+    //https://www.geeksforgeeks.org/mutex-lock-for-linux-thread-synchronization/ 
+        pthread_mutex_lock(&mutexLock);
+	if(ChairsCount == 0)
+	{
     //if chairs are empty, break the loop.
-
+		pthread_mutex_unlock(&mutexLock);
+		break;
+        }
 	//TA gets next student on chair.
-
+    sem_post(&arr[CurrentIndex]);
+    ChairsCount--;
     //unlock
 
 	//TA is currently helping the student
 
      //hint: use sem_wait(); sem_post(); pthread_mutex_lock(); pthread_mutex_unlock()
+}
 
-*/
 }
 
 void *Student_Activity(void *threadID)
 {
-    /*TODO
+    //TODO
 
 	//Student  needs help from the TA
 	//Student tried to sit on a chair.
@@ -101,7 +110,7 @@ void *Student_Activity(void *threadID)
     //Student leaves his/her chair.
     sem_wait(&arr[CurrentIndex]);
 	//Student  is getting help from the TA
-	http://www.cplusplus.com/reference/cstdio/printf/ 
+	//http://www.cplusplus.com/reference/cstdio/printf/ 
 	printf("Student %ld is getting help from the TA", (long)threadID);
 	//Student waits to go next.
 	sem_wait(&s4);
@@ -113,5 +122,5 @@ void *Student_Activity(void *threadID)
 
      //hint: use sem_wait(); sem_post(); pthread_mutex_lock(); pthread_mutex_unlock()
 
-	*/
+	
 }
