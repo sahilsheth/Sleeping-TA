@@ -88,6 +88,9 @@ void *TA_Activity()
 	//TA gets next student on chair.
     sem_post(&arr[CurrentIndex]);
     ChairsCount--;
+    printf("Student left their chair. Now the remaining chairs %d\n", 3-ChairsCount);
+    CurrentIndex = (CurrentIndex + 1) % 3;
+    pthread_mutex_unlock(&mutexLock);
     //unlock
 
 	//TA is currently helping the student
