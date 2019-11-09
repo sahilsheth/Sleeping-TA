@@ -99,9 +99,14 @@ void *Student_Activity(void *threadID)
 
 	// unlock
     //Student leaves his/her chair.
+    sem_wait(&arr[CurrentIndex]);
 	//Student  is getting help from the TA
+	http://www.cplusplus.com/reference/cstdio/printf/ 
+	printf("Student %ld is getting help from the TA", (long)threadID);
 	//Student waits to go next.
+	sem_wait(&s4);
 	//Student left TA room
+	printf("Student %ld left TA room. ", (long)threadID);
 
     //If student didn't find any chair to sit on.
     //Student will return at another time
