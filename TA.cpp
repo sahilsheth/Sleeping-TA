@@ -34,8 +34,8 @@ void *Student_Activity(void *threadID);
 int main(int argc, char* argv[])
 {
 	int studentNum;		//a variable taken from the user to create student threads.	Default is 5 student threads.
-	//int id;
-	//srand(time(NULL));
+	int id;
+	srand(time(NULL));
 
 	//Initializing Mutex Lock and Semaphores
   sem_init(&arr, 0, 1); //Contains 3 semaphores
