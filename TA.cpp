@@ -104,28 +104,47 @@ void *TA_Activity()
 
 void *Student_Activity(void *threadID)
 {
-    //TODO
+   //TODO
 
-	//Student  needs help from the TA
-	//Student tried to sit on a chair.
-	//wake up the TA.
-    // lock
+       //Student  needs help from the TA
+       int count= ChairsCount;
+       //Student tried to sit on a chair.
+       if(count<3){
+           //wake up the TA.
 
-	// unlock
-    //Student leaves his/her chair.
-    sem_wait(&arr[CurrentIndex]);
-	//Student  is getting help from the TA
-	//http://www.cplusplus.com/reference/cstdio/printf/ 
-	printf("Student %ld is getting help from the TA", (long)threadID);
-	//Student waits to go next.
-	sem_wait(&s4);
-	//Student left TA room
-	printf("Student %ld left the TA room. ", (long)threadID);
+           if (count==0){
+               sem_post(&sleepyTA);
+           }
+           else{
+               printf("Student %ld is waiting for the TA.");
+           }
+           // lock
 
-    //If student didn't find any chair to sit on.
-    //Student will return at another time
+           pthread_mutex_lock(&mutexLock);
+           int index= (ChairsCount+CurrentIndex)%3;
+           ChairsCount++;
+           //unlock
+           pthread_mutex_unlock(&mutexLock);
+           //Student leaves his/her chair.
+           sem_wait(&arr[CurrentIndex]);
+           //Student  is getting help from the TA
+           //http://www.cplusplus.com/reference/cstdio/printf/
+           printf("Student %ld is getting help from the TA", (long)threadID);
+           //Student waits to go next.
+           sem_wait(&s4);
+           //Student left TA room
+           printf("Student %ld left TA room. ", (long)threadID);
+       }
 
-     //hint: use sem_wait(); sem_post(); pthread_mutex_lock(); pthread_mutex_unlock()
+       
+
+
+
+       //If student didn't find any chair to sit on.
+       //Student will return at another time
+       printf("Student %ld must come back later.",(long)threadID);
+
+        //hint: use sem_wait(); sem_post(); pthread_mutex_lock(); pthread_mutex_unlock()
 
 	
 }
