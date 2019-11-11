@@ -26,7 +26,7 @@ sem_t s4; //A semaphore to signal and wait for TA's next student.
 pthread_mutex_t mutexLock;
 
 //Declared Functions
-void *TA_Activity();
+void *TA_Activity(void *);
 void *Student_Activity(void *threadID);
 
 int main(int argc, char* argv[])
@@ -77,7 +77,7 @@ int main(int argc, char* argv[])
 	return 0;
 }
 
-void *TA_Activity()
+void *TA_Activity(void *)
 {
      //TODO
 	//TA is currently sleeping.
