@@ -16,12 +16,10 @@ int CurrentIndex = 0;
 //Declaration of Semaphores and Mutex Lock.
 
 //Semaphores used:
-sem_t s1; //A semaphore to signal and wait TA's sleep.
-sem_t s2;
-sem_t s3;
-sem_t arr[s1, s2, s3]; //An array of 3 semaphores to signal and wait chair to wait for the TA.
-sem_t s4; //A semaphore to signal and wait for TA's next student.
 sem_t sleepyTA;
+sem_t s1, s2, s3; //A semaphore to signal and wait TA's sleep.
+sem_t arr [3]; //An array of 3 semaphores to signal and wait chair to wait for the TA.
+sem_t s4; //A semaphore to signal and wait for TA's next student.
 
 //Mutex Lock used:
 //To lock and unlock variable ChairsCount to increment and decrement its value.
@@ -38,7 +36,7 @@ int main(int argc, char* argv[])
 	srand(time(NULL));
 
 	//Initializing Mutex Lock and Semaphores
-  sem_init(&arr, 0, 1); //Contains 3 semaphores
+  sem_init(&arr[3], 0, 1); //Contains 3 semaphores
   sem_init(&s4, 0, 1);
   pthread_mutex_init(&mutexLock, NULL);
 
@@ -59,11 +57,21 @@ int main(int argc, char* argv[])
 
 	//Creating one TA thread and N Student threads.
      //hint: use pthread_create
-  pthread_create(&Students, NULL, &Student_Activity, NULL);
-  pthread_create(&TA, NULL, &TA_Activity, NULL);
+
+  pthread_create(&TA, NULL, TA_Activity, NULL);
+ 	for(id =0; id < studentNum; id++)
+
+  	pthread_create(&Students[id], NULL, &Student_Activity, (void*) (long) id);
+
+
 	//Waiting for TA thread and N Student threads.
-  pthread_join(&Students, NULL);
-  pthread_join(&TA, NULL);
+  pthread_join(TA, NULL);
+  for (id=0; id < studentNum; id++)
+
+  pthread_join(Students[id], NULL);
+
+
+
 	//Free allocated memory
 	free(Students);
 	return 0;
