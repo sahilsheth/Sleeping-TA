@@ -33,9 +33,9 @@ void *Student_Activity(void *threadID);
 
 int main(int argc, char* argv[])
 {
-	int number_of_students;		//a variable taken from the user to create student threads.	Default is 5 student threads.
-	int id;
-	srand(time(NULL));
+	int studentNum;		//a variable taken from the user to create student threads.	Default is 5 student threads.
+	//int id;
+	//srand(time(NULL));
 
 	//Initializing Mutex Lock and Semaphores
   sem_init(&arr, 0, 1); //Contains 3 semaphores
@@ -45,17 +45,17 @@ int main(int argc, char* argv[])
 
 	if(argc<2)
 	{
-		printf("Number of Students not specified. Using default (5) students.\n");
-		number_of_students = 5;
+		printf("Number of Students not specified \n");
+		studentNum = 5;
 	}
 	else
 	{
-		printf("Number of Students specified. Creating %d threads.\n", number_of_students);
-		number_of_students = atoi(argv[1]);
+		printf("Number of Students is specified. Creating %d threads.\n", studentNum);
+		studentNum = atoi(argv[1]);
 	}
 
 	//Allocate memory for Students
-	Students = (pthread_t*) malloc(sizeof(pthread_t)*number_of_students);
+	Students = (pthread_t*) malloc(sizeof(pthread_t)*studentNum);
 
 	//Creating one TA thread and N Student threads.
      //hint: use pthread_create
@@ -120,7 +120,7 @@ void *Student_Activity(void *threadID)
 	//Student waits to go next.
 	sem_wait(&s4);
 	//Student left TA room
-	printf("Student %ld left TA room. ", (long)threadID);
+	printf("Student %ld left the TA room. ", (long)threadID);
 
     //If student didn't find any chair to sit on.
     //Student will return at another time
