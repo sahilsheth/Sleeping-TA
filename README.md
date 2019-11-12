@@ -5,8 +5,7 @@ Sahil Sheth, sahilsheth642@csu.fullerton.edu
 - Unlocking and waiting in Student_Activity
 
 Cesar Martinez Melgoza, cesmartz10@csu.fullerton.edu
-- Finished int main
-- Created 2 pthreads, TA and Teacher
+- Created 2 pthreads, TA and Student
 - Created Mutex lock
 - Joined the thread
 
