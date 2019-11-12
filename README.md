@@ -1,6 +1,8 @@
 # Sleeping-TA
 
 Sahil Sheth, sahilsheth642@csu.fullerton.edu
+- Worked on TA_Activity
+- Unlocking and waiting in Student_Activity
 
 Cesar Martinez Melgoza, cesmartz10@csu.fullerton.edu
 - Finished int main
