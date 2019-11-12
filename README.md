@@ -11,9 +11,9 @@ Cesar Martinez Melgoza, cesmartz10@csu.fullerton.edu
 - Joined the thread
 
 Marco Botello, marco.botello@csu.fullerton.edu
--Worked on Student_Activity
--implemented locking and unlocking mutex in student activity
--implemented sem_wait into Student_Activity
+- Worked on Student_Activity
+- implemented locking and unlocking mutex in student activity
+- implemented sem_wait into Student_Activity
 
 Emmanuel Khlot, ekhlot@csu.fullerton.edu
 
