@@ -13,6 +13,7 @@ Marco Botello, marco.botello@csu.fullerton.edu
 - Worked on Student_Activity
 - implemented locking and unlocking mutex in student activity
 - implemented sem_wait into Student_Activity
+- Documentation
 
 Emmanuel Khlot, ekhlot@csu.fullerton.edu
 
