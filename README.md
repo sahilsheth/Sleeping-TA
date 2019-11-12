@@ -7,7 +7,7 @@ Sahil Sheth, sahilsheth642@csu.fullerton.edu
 Cesar Martinez Melgoza, cesmartz10@csu.fullerton.edu
 - Created 2 pthreads, TA and Student
 - Created Mutex lock
-- Joined the thread
+- Initiated semaphores in main
 
 Marco Botello, marco.botello@csu.fullerton.edu
 - Worked on Student_Activity
