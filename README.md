@@ -16,4 +16,6 @@ Marco Botello, marco.botello@csu.fullerton.edu
 - Documentation
 
 Emmanuel Khlot, ekhlot@csu.fullerton.edu
-
+- Worked on syntax errors
+- Added onto TA and Student functions
+- Linux Implementation
